@@ -24,8 +24,13 @@ function createDreamTeam(members){
         }
        
         let res='';
+        for (let i=0;i<strarr.length;i++){
+            strarr[i]=strarr[i].trim();
+            strarr[i]=strarr[i].toUpperCase();
+        }
         strarr.sort();
         for (let value of strarr){
+           
             res+=value[0];
         }
         return res;
