@@ -17,12 +17,14 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 function repeater(str,obj){
 let rep=obj["repeatTimes"];
-if (typeof(rep)== 'undefined') return str;
+if (typeof(rep)== 'undefined') rep=1;
 let addRepeat=obj["additionRepeatTimes"];
-if (typeof(addRepeat)== 'undefined') return str;
+let adding=obj["addition"];
+if ((typeof adding != 'undefined')&&(typeof(addRepeat)== 'undefined')) {addRepeat=1;}
+else {if (typeof(addRepeat)== 'undefined') addRepeat=0;}
 let separator=obj["separator"];
 if (typeof(separator)== 'undefined') separator="+";
-let adding=obj["addition"];
+
 let addSep=obj["additionSeparator"];
 if (typeof(addSep)== 'undefined') addSep="|";
 let result="";

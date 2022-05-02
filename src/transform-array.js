@@ -16,14 +16,15 @@ const { NotImplementedError } = require('../extensions/index.js');
 function transform(arr){
     if (!Array.isArray(arr)) {throw Error("'arr' parameter must be an instance of the Array!")}
     let res=[];
-    let check=false;
+    let check=true;
     for (let i=0; i<arr.length; i++){
         switch (arr[i]){
         case '--discard-next':{i++; check=true;} break;
-        case '--discard-prev':{res.pop(); check=true;} break;
-        case '--double-next':{res.push(arr[i+1]);} break;
-        case '--double-prev':{if (!check) res.push(res[res.length-1]); check=false;} break;
-        default: if (typeof arr[i]==='number') res.push(arr[i]);
+        case '--discard-prev':{if (i!=0 && !check) res.pop(); check=true; if (i==0) check=false;} break;
+        case '--double-next':{if (i!=arr.length-1) res.push(arr[i+1]); check=false;} break;
+        case '--double-prev':{if (i!=0 && !check) res.push(res[res.length-1]); 
+        check=false;} break;
+        default: res.push(arr[i]);
         }
     }
     return res;

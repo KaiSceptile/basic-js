@@ -42,8 +42,10 @@ class VigenereCipheringMachine{
         return result;
     }
     encrypt(str,key){
-       
+        if (arguments.length<2) throw Error('Incorrect arguments!');
+        if ((typeof arguments[0] =='undefined')||(typeof arguments[0] =='undefined')) throw Error('Incorrect arguments!');
         str=str.toLowerCase();
+        key=key.toLowerCase();
         let result="";
         let fullkey=this.getfullkey(str,key);
         for (let i=0;i<str.length;i++){
@@ -55,8 +57,10 @@ class VigenereCipheringMachine{
         return result.toUpperCase();
     }
     decrypt(str,key){
-        
+        if (arguments.length<2) throw Error('Incorrect arguments!');
+        if ((typeof arguments[0] =='undefined')||(typeof arguments[0] =='undefined')) throw Error('Incorrect arguments!');
         str=str.toLowerCase();
+        key=key.toLowerCase();
         let result="";
         let fullkey=this.getfullkey(str,key);
         for (let i=0;i<str.length;i++){

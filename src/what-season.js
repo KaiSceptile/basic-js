@@ -13,7 +13,9 @@ const { NotImplementedError } = require('../extensions/index.js');
  */
 function getSeason(date){
     if (arguments.length==0) {return 'Unable to determine the time of year!';}
-    if (!date instanceof Date) {throw new Error("Invalid date!")}
+    try {
+    let str=date.toString()[8]+date.toString()[9];
+    if (str!=date.getDate()) {throw new Error("Invalid date!")}
     let Month=date.getMonth();
     let res='';
     switch (Month){
@@ -31,7 +33,9 @@ function getSeason(date){
         case 10: res='autumn'; break;
     } 
     return res;
-    
+  } catch (error) {
+    throw new Error("Invalid date!")
+  }
 }
 
 module.exports = {
